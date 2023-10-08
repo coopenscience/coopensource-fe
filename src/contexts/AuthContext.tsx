@@ -1,6 +1,7 @@
 import React, { useState, useEffect, createContext } from 'react';
 import { OverridableTokenClientConfig, googleLogout, useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
+import { redirect } from "react-router-dom";
 
 type User = {
     email: string;
@@ -13,6 +14,8 @@ type Profile = {
     name: string;
     email: string;
     picture: string;
+    bio: string | null; 
+    category: 'contributor' | 'creator' | null;
   }
 
 type AuthContextType = {
@@ -20,21 +23,26 @@ type AuthContextType = {
     profile : Profile | null;
     logOut: () => void;
     login: (overrideConfig?: OverridableTokenClientConfig | undefined) => void;
-
+    handleShowRegister: () => any;
+    handleShowLogin: () => any;
+    showLogin: boolean;
+    showRegister: boolean;
+    handleSetProfile: (p: any) => void;
 }
 
-  
+
+
 function getCookie(cname: string) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(';');
     for(let i = 0; i <ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
       }
     }
     return "";
@@ -45,7 +53,24 @@ export const AuthContext = createContext({} as AuthContextType);
 function AuthContextComponent({children}: {children:React.ReactNode}){
     const [ user, setUser ] = useState<User | null | Omit<any, "error" | "error_description" | "error_uri"> | any>(null);
     const [ profile, setProfile ] = useState<Profile | null>(null);
+    const [showLogin, setShowLogin] = useState<true | false>(false);
+    const [showRegister, setShowRegister] = useState<true | false>(false);
 
+    function handleShowRegister() {
+        setShowLogin(false);
+        setShowRegister(true);
+    }
+
+    function handleShowLogin() {
+        setShowRegister(false);
+        setShowLogin(true);
+    }
+
+    function handleSetProfile(p: any) {
+        setProfile(p);
+        redirect('/feed');
+    }
+    
     const login = useGoogleLogin({
         onSuccess: (codeResponse) => setUser(codeResponse) ,
         onError: (error) => console.log('Login Failed:', error)
@@ -96,7 +121,7 @@ function AuthContextComponent({children}: {children:React.ReactNode}){
     };
 
     return (        
-        <AuthContext.Provider value={{logOut, login, user, profile}}>
+        <AuthContext.Provider value={{handleSetProfile,handleShowRegister,handleShowLogin, showLogin, showRegister,logOut, login, user, profile}}>
             {children}
         </AuthContext.Provider>
     );
