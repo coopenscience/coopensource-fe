@@ -20,7 +20,7 @@ export const CompleteModal = () => {
         
         handleSetProfile(newUser);
         console.log('profile', profile);
-        const res = await axios.post('http://127.0.0.1:8000/api/complete_user', {
+        const res = await axios.post('http:127.0.0.1:8000/api/complete_user', {
             bio: data.bio,
             category: data.category || 'contributor',
             id: id
@@ -53,11 +53,11 @@ export const CompleteModal = () => {
                 <div className="input-grp flex-1 w-full flex flex-col items-center justify-end gap-1 px-4">
                     <img src={profile?.picture} className='w-32 h-32 rounded-full' />
                     <div className="input-grp w-full flex flex-row items-center justify-center gap-1 mt-5">
-                        <input {...register('category')} value="contributor" className='w-[15px] h-[15px]' id="type_contributor" type="radio" name="type" />
+                        <input value="contributor" className='w-[15px] h-[15px]' id="type_contributor" type="radio" name="type" />
                         <label htmlFor="type_contributor">I am a contributor</label>
                     </div>
                     <div className="input-grp w-full flex flex-row items-center justify-center gap-1">
-                        <input {...register('category')} value="creator" className='w-[15px] h-[12px]' type="radio" name="type" id="type_creator"/>
+                        <input value="creator" className='w-[15px] h-[12px]' type="radio" name="type" id="type_creator"/>
                         <label htmlFor="type_creator">I am a creator</label>
 
                     </div>

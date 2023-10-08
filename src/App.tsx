@@ -6,7 +6,7 @@ import { Home } from './components/Home';
 import { Feed } from './components/Feed';
 
 function App() {
-    const { profile, login, logOut } = useContext(AuthContext);
+    const { profile } = useContext(AuthContext);
 
     if (profile) {
       return (

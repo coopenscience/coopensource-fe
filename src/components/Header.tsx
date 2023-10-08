@@ -8,7 +8,7 @@ import { CompleteModal } from './CompleteModal';
 
 
 export const Header = () => {
-    const {profile, logOut,handleShowRegister, showRegister, showLogin, handleShowLogin} = useContext(AuthContext);
+    const {profile,handleShowRegister, showRegister, showLogin, handleShowLogin} = useContext(AuthContext);
     const state = profile ? 'logged' : 'not_logged';
     if (state == 'logged') {
         console.log(profile?.bio)

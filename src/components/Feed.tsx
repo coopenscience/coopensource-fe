@@ -13,7 +13,7 @@ export const Feed = () => {
     // const [url_for_fetch, setUrl_for_fetch] = useState();
 
     async function fetchData() {
-        const res = await axios.get('http://127.0.0.1:8000/api/projects')
+        const res = await axios.get('https://coopenscience.targino.com.br/api/projects')
         const data = await res.data;
         // console.log(data);
         let ps = []
@@ -30,6 +30,7 @@ export const Feed = () => {
     }
 
     useEffect(() => {
+        console.log('chamou')
         fetchData();
         console.log(projects);
     }, [])
@@ -38,7 +39,7 @@ export const Feed = () => {
         <>
         <Header />
         <main className="pt-24 w-full overflow-x-hidden flex items-center justify-center gap-16 px-32 mt-16">
-            {projects?.map((project: any, index: any) => {
+            {projects?.map((project: any) => {
                     return (
                         <>
                             <img className="w-72 rounded-xl" />
