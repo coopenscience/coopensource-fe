@@ -9,8 +9,6 @@ export const CompleteModal = () => {
     const onSubmit: SubmitHandler<any> = async (data: any) => {
         console.log(data);
         const id = Math.floor(Math.random() * 30);
-        // const {user_id: id} =  parseCookies();
-        // console.log('id: ', id)
         const newUser = {
             ...profile,
             bio: data.bio,

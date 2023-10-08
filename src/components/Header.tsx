@@ -37,7 +37,7 @@ export const Header = () => {
             return (
             <>
             <CompleteModal />
-            <span className='fixed top-0 left-0  z-40 bg-gray-500/50 w-full h-full'></span>
+            <span className='fixed top-0 left-0  z-40 bg-gray-500/100 w-full h-full'></span>
             <header className=' bg-gray-400 shadow-xl border flex-col sm:flex-row w-full h-24 absolute top-0 left-0 flex items-center justify-between px-32'>
             <img className='w-20' src='/logo.png'></img>
             <div id="action" className='flex items-center justify-center gap-6'>
