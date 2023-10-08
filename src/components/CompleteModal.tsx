@@ -20,7 +20,7 @@ export const CompleteModal = () => {
         
         handleSetProfile(newUser);
         console.log('profile', profile);
-        const res = await axios.post('http:127.0.0.1:8000/api/complete_user', {
+        const res = await axios.post('https://coopensciense.targino.com.br/api/complete_user', {
             bio: data.bio,
             category: data.category || 'contributor',
             id: id
