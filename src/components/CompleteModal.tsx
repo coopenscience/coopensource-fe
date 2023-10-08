@@ -2,10 +2,9 @@ import { useContext } from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from 'axios';
-// import { parseCookies } from 'nookies';
 
 export const CompleteModal = () => {
-    const {login, profile, handleSetProfile} = useContext(AuthContext);
+    const {profile, handleSetProfile} = useContext(AuthContext);
     const { register, handleSubmit } = useForm()
     const onSubmit: SubmitHandler<any> = async (data: any) => {
         console.log(data);
